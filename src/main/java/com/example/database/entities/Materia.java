@@ -12,6 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+
+/*
+ * Criação da entidade Aluno para o banco h2
+ * Foram utilizadas anotações JPA seguindo as diretivas de entidade-relacionamento
+ * Aqui foi feito o relacionamento entre as entidades Grade e Materia no método 'grades'
+ */
 @Entity
 public class Materia {
 

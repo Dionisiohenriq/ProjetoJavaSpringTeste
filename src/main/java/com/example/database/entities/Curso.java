@@ -21,6 +21,12 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+/*
+ * Criação da entidade Curso para o banco h2
+ * Foram utilizadas anotações JPA seguindo as diretivas de entidade-relacionamento
+ * Aqui foram implementados métodos para log de querys no console do spring
+ */
+
 @Entity
 @Table(name = "curso_faculdade")
 public class Curso {

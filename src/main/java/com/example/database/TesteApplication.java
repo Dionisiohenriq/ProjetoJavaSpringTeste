@@ -20,6 +20,10 @@ import com.example.database.repositores.MateriaRepository;
 @SpringBootApplication
 public class TesteApplication implements CommandLineRunner {
 
+	// Instanciamento dos repositórios ( classes auxiliares de inserção de dados no
+	// banco)
+	// a notação '@Autowired, diz ao compilador que o código na sequência,
+	// é um código de inserção de dados no banco
 	@Autowired
 	private CursoRepository cursoRepository;
 
@@ -36,51 +40,69 @@ public class TesteApplication implements CommandLineRunner {
 		SpringApplication.run(TesteApplication.class, args);
 	}
 
+	// Classe de execução da aplicação backend
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
 
+		// Instância da entidade Curso, passando os dados diretamente
 		Curso curso1 = new Curso("Graduação em T.I.", "Computação");
 		Curso curso2 = new Curso("Graduação em E.C.", "Computação");
 		Curso curso3 = new Curso("Graduação em Química.", "Exatas");
 		Curso curso4 = new Curso("Graduação em Biologia", "Natureza");
 
+		// Utilizando a instância do injetor 'cursoRepository' para salvar os dados no
+		// banco h2
 		cursoRepository.save(curso1);
 		cursoRepository.save(curso2);
 		cursoRepository.save(curso3);
 		cursoRepository.save(curso4);
 
+		// Instância da entidade Aluno, passando os dados com o uso da entidade
 		Aluno aluno1 = new Aluno("José", curso1);
 		Aluno aluno2 = new Aluno("ALine", curso4);
 		Aluno aluno3 = new Aluno("Henrique", curso1);
 
+		// Utilizando a instância do injetor 'alunoRepository' para salvar os dados no
+		// banco h2
 		alunoRepository.save(aluno1);
 		alunoRepository.save(aluno2);
 		alunoRepository.save(aluno3);
 
+		// Instância da entidade Grade, passando os dados com o uso da entidade
 		Grade grade1 = new Grade("Graduação em games", aluno1);
 		Grade grade2 = new Grade("Graduação em ecosistemas", aluno2);
 		Grade grade3 = new Grade("Graduação em Sistemas de Informação", aluno3);
 
+		// Utilizando a instância do injetor 'gradeRepository' para salvar os dados no
+		// banco h2
 		gradeRepository.save(grade1);
 		gradeRepository.save(grade2);
 		gradeRepository.save(grade3);
 
+		// criação de uma lista que não se repete com o 'Set', para adicionar as
+		// matérias
 		Set<Grade> gradeMateria1 = new HashSet<>();
 		gradeMateria1.add(grade1);
+
+		// criação das instâncias da entidade 'Materia' e passando os parâmetros
 		Materia materia1 = new Materia("Lógica de programação", gradeMateria1);
 
-		Set<Grade> gradeMateria2 = new HashSet<>();
-		gradeMateria1.add(grade1);
-		Materia materia2 = new Materia("Fisiologia", gradeMateria2);
+		Materia materia2 = new Materia("Fisiologia", gradeMateria1);
 
-		Set<Grade> gradeMateria3 = new HashSet<>();
-		gradeMateria1.add(grade1);
-		Materia materia3 = new Materia("Java", gradeMateria3);
+		Materia materia3 = new Materia("Java", gradeMateria1);
 
+		// Utilizando a instância do injetor 'materiaRepository' para salvar os dados no
+		// banco h2
 		materiaRepository.save(materia1);
 		materiaRepository.save(materia2);
 		materiaRepository.save(materia3);
+
+		// Abaixo seguem testes desenvolvidos durante o curso, de manipulação de dados
+		// no banco
+
+		// Isso foi criado por conta do banco h2 ser de tempo de execução somente,
+		// assim é possível perceber modificações em tempo de execução
+
 		// System.out.println("Aguarde...");
 		// Thread.sleep(3000);
 
